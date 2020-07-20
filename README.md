@@ -1,5 +1,11 @@
 # Aplikasi-Outlet-Layanan-Paket-Data-dan-Layan-Internet
-Tes Aplikasi D~Net
+## Tes Aplikasi D~Net
+<<<<<<< HEAD
+
+### Nama : Moh. Febri Nurul Qorik, S.Kom 
+### Telp : 08121662744
+=======
+>>>>>>> 8fb9abcaec1af8346bcf4a219c8beb538458b097
 
 Adi adalah seorang pengusaha, yang punya outlet yang menjual banyak layanan paket data / internet. 
 Setiap bulannya dia melakukan rekap data dan laporan dengan cara manual. 
@@ -9,8 +15,7 @@ b. Data Pelanggan
 c. Data Layanan / Paket data 
 d. Data Transaksi
 
-Nama : Moh. Febri Nurul Qorik, S.Kom 
-Telp : 08121662744
+
 
 Penting
 
