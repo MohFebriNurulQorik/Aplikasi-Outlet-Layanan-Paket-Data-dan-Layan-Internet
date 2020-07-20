@@ -36,7 +36,10 @@ URL : http://localhost:8000
 Test 
 Metod :get
 Request : /
-resepon : "Konek"
+resepon : 
+{
+    "status": "Konek"
+}
 
 
  
