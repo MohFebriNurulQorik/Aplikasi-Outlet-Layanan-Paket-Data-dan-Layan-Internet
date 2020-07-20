@@ -36,8 +36,9 @@ Penting
 https://documenter.getpostman.com/view/8112376/T1DmCyBU
 atau
 https://www.getpostman.com/collections/896e1ca6baf5e5e73618
-## saran : maaf, agar tampilan lebih menarik install Extensi JSONView
-## jika pernah login makan harus menggukan token baru karena token lama tidak berlaku,bisa di cek saat login post atau di database token, karena saat login akan otomatis generate token baru
+
+saran : maaf, agar tampilan lebih menarik install Extensi JSONView
+jika pernah login makan harus menggukan token baru karena token lama tidak berlaku,bisa di cek saat login post atau di database token, karena saat login akan otomatis generate token baru
 
  
 
