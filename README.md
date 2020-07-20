@@ -30,17 +30,10 @@ Penting
    contoh : C:\xampp\htdocs\D_NET\aplikasi_outlet_layanan_ineternet_back_end_lumen>php -S localhost:8000 -t public
 6. back end redy
 
-Back End
-URL : http://localhost:8000
+API Dokumentasi
 
-Test 
-Metod :get
-Request : /
-resepon : 
-{
-    "status": "Konek"
-}
-
+https://www.getpostman.com/collections/896e1ca6baf5e5e73618
+saran : maaf, agar tampilan lebih menarik install Extensi JSONView
 
  
 
