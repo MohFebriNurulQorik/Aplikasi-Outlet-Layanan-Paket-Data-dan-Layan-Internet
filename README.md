@@ -1,5 +1,5 @@
 # Aplikasi-Outlet-Layanan-Paket-Data-dan-Layan-Internet
-##Tes Aplikasi D~Net
+## Tes Aplikasi D~Net
 
 Adi adalah seorang pengusaha, yang punya outlet yang menjual banyak layanan paket data / internet. 
 Setiap bulannya dia melakukan rekap data dan laporan dengan cara manual. 
