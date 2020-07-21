@@ -32,10 +32,19 @@ Penting
    contoh : C:\xampp\htdocs\D_NET\aplikasi_outlet_layanan_ineternet_back_end_lumen>php -S localhost:8000 -t public
 6. back end redy
 
+Akases admin
+email:admin@gmail.com
+password : admin123
+Akases User
+email: mohfebrinq@gmail.com
+password : user123
+
 # API Dokumentasi
+
 https://documenter.getpostman.com/view/8112376/T1DmCyBU
 atau
 https://www.getpostman.com/collections/896e1ca6baf5e5e73618
+
 
 saran : maaf, agar tampilan lebih menarik install Extensi JSONView
 jika pernah login makan harus menggukan token baru karena token lama tidak berlaku,bisa di cek saat login post atau di database token, karena saat login akan otomatis generate token baru
