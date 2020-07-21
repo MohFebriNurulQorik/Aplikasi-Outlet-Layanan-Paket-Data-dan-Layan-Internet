@@ -16,6 +16,7 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
 </head>
+
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -41,13 +42,55 @@
     <div class="container" style="padding-top:15px">
         <div class="row">
             <div class="col-md-4">
-                <form action="" method="post">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
+                <form action="#" id="user" method="PUT">
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault01">Name</label>
+                            <input type="text" class="form-control" id="validationDefault01" name="name"
+                                placeholder="Akbar" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault02">Phone</label>
+                            <input type="text" class="form-control" id="validationDefault02" name="phone"
+                                placeholder="081212123" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault03">Email</label>
+                            <input type="text" class="form-control" id="validationDefault03" name="email"
+                                placeholder="ShonAlay@gmail.com" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault04">Password</label>
+                            <input type="text" class="form-control" id="validationDefault03" name="password_baru"
+                                placeholder="*******" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault03">Adress</label>
+                            <input type="text" class="form-control" id="validationDefault03" name="adress"
+                                placeholder="Jember" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault04">Roles</label>
+                            <select class="custom-select" name="roles_id" id="validationDefault04" required>
+                                <option value="1">Admin</option>
+                                <option value="2">User</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                            <label class="form-check-label" for="invalidCheck2">
+                                Agree to terms and conditions
+                            </label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit form</button>
                 </form>
             </div>
             <div class="col-md-8">
@@ -71,15 +114,18 @@
 
 </body>
 <script>
-    var token = "21232f297a57a5a743894a0e4a801fc3";
+       var token = "21232f297a57a5a743894a0e4a801fc3";
     var xmlhttp = new XMLHttpRequest();
     var url = "http://localhost:8000/users?token=" + token;
     var text = '';
+    function tabel() {
+     
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var myArr = JSON.parse(this.responseText);
-
+            document.getElementById("body").innerHTML = "";
             console.log(myArr['data_user']);
+            $("#body").empty();
             for (i = 0; i < myArr['data_user'].length; i++) {
                 text += '<tr>' +
                     '<td>' + myArr['data_user'][i].id + '</td>' +
@@ -90,10 +136,49 @@
             }
 
             document.getElementById("body").innerHTML = text;
+            text= '';
         }
     };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
+    }
+    
+</script>
+<script>
+    $(document).ready(function(){
+  // jika terjadi event submit pada form
+  tabel();
+  
+  var token = "21232f297a57a5a743894a0e4a801fc3";
+    var xmlhttp = new XMLHttpRequest();
+    var urlku = "http://localhost:8000/users?token=" + token;
+
+  $('#user').submit(function(e) {
+
+    // mencegah agar halaman tidak pindah halaman / refresh
+    e.preventDefault()
+    // ambil data
+    var data = $(this).serialize()
+    // ambil method dari method di form
+    var method = $(this).attr('method')
+    // ke mana data akan dikirim
+    // diambil dari action di form
+    var action = $(this).attr('action')
+    // memulai kirim ajax
+    $.ajax({
+      url: urlku,
+      data: data,
+      method: method,
+      beforeSend: function() {
+        // lakukan sesuatu sebelum data dikirim
+        // misalkan memulai loading
+      },
+      success: function(data) {
+        tabel();
+      }
+    })
+  })
+})
 </script>
 
 </html>
