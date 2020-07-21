@@ -10,10 +10,11 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
 $router->get('/', function () use ($router) {
-    return response()->json(['status' => 'Konek']);;
+    return response()->json(['status' => 'Konek']);
 });
+
+
 $router->get('/users', 'UserController@users');
 $router->get('/users/{id}', 'UserController@deatail_user');
 $router->put('/users', 'UserController@create_user');

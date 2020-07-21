@@ -90,6 +90,9 @@ $app->configure('app');
 | totally optional, so you are not required to uncomment this line.
 |
 */
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+]);
 
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
