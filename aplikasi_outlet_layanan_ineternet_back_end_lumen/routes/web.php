@@ -14,6 +14,7 @@ $router->get('/', function () use ($router) {
     return response()->json(['status' => 'Konek']);
 });
 
+$router->post('/login', 'UserController@login');
 
 $router->get('/users', 'UserController@users');
 $router->get('/users/{id}', 'UserController@deatail_user');

@@ -26,24 +26,25 @@ class UserController extends Controller
     ]);
 
     $user = User::where('email', $request->email)
-    ->where('passowrd', $request->password)            
+    ->where('password', $request->password)            
     ->first();
-        
-        if(!$user->isEmpty()){
-            
-            
+        if($user==null){
+            return response()->json(['status' => 'error']);
+          
+        }else{
+              
             do {
                 $token = Str::random(10); 
                 $update_token = User::where('token', $token)          
                 ->get();
             } while (!$update_token->isEmpty());
             $user = User::where('email', $request->email)
-            ->where('passowrd', $request->password) 
+            ->where('password', $request->password) 
             ->update(['token' => $token]); 
             return response()->json(['status' => 'sukses', 'token' => $token]);
         } 
         
-    return response()->json(['status' => 'error']);
+    
 }
     public function users()
     {
