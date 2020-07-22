@@ -323,7 +323,7 @@
       method: method,
       beforeSend: function() {
         // lakukan sesuatu sebelum data dikirim
-        // misalkan memulai loading
+        // misalkan memulai loadingasd
       },
       success: function(data) {
         tabel();
