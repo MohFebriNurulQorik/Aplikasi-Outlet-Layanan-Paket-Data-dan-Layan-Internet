@@ -25,160 +25,69 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="users">Registrasi<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="transaksi">Transkasi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="layanan">Layanan</a>
-                </li>
-            </ul>
-        </div>
     </nav>
     <div class="container" style="padding-top:15px">
         <div class="row">
-            <div class="col-md-4">
-                <form action="#" id="user" method="PUT">
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault01">Name</label>
-                            <input type="text" class="form-control" id="validationDefault01" name="name"
-                                placeholder="Akbar" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault02">Phone</label>
-                            <input type="text" class="form-control" id="validationDefault02" name="phone"
-                                placeholder="081212123" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault03">Email</label>
-                            <input type="text" class="form-control" id="validationDefault03" name="email"
-                                placeholder="ShonAlay@gmail.com" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault04">Password</label>
-                            <input type="text" class="form-control" id="validationDefault03" name="password_baru"
-                                placeholder="*******" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault03">Adress</label>
-                            <input type="text" class="form-control" id="validationDefault03" name="adress"
-                                placeholder="Jember" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault04">Roles</label>
-                            <select class="custom-select" name="roles_id" id="validationDefault04" required>
-                                <option value="1">Admin</option>
-                                <option value="2">User</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                            <label class="form-check-label" for="invalidCheck2">
-                                Agree to terms and conditions
-                            </label>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" type="submit">Submit form</button>
-                </form>
+            <div class="col-md-6">
+            <form action="#" method="post" id="login">
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                <input type="email" class="form-control" name="email" id="inputEmail3" >
+                </div>
             </div>
-            <div class="col-md-8">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
-                        </tr>
-                    </thead>
-                    <tbody id='body'>
-
-                    </tbody>
-                </table>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label" >Password</label>
+                <div class="col-sm-10">
+                <input type="password" class="form-control" name="password" id="inputPassword3" required>
+                </div>
             </div>
+            
+            <div class="form-group row">
+                <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </div>
+            </form>
+            </div>
+        
         </div>
 
     </div>
 
 </body>
 <script>
-       var token = "21232f297a57a5a743894a0e4a801fc3";
-    var xmlhttp = new XMLHttpRequest();
-    var url = "http://localhost:8000/users?token=" + token;
-    var text = '';
-    function tabel() {
-     
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var myArr = JSON.parse(this.responseText);
-            document.getElementById("body").innerHTML = "";
-            console.log(myArr['data_user']);
-            $("#body").empty();
-            for (i = 0; i < myArr['data_user'].length; i++) {
-                text += '<tr>' +
-                    '<td>' + myArr['data_user'][i].id + '</td>' +
-                    '<td>' + myArr['data_user'][i].name + '</td>' +
-                    '<td>' + myArr['data_user'][i].email + '</td>' +
-                    '<td>' + myArr['data_user'][i].phone + '</td>' +
-                    '</tr>';
+        var urlku = "http://localhost:8000/login";
+        $('#login').submit(function(e) {
+            
+
+            // mencegah agar halaman tidak pindah halaman / refresh
+            e.preventDefault()
+            // ambil data
+            var data = $(this).serialize()
+            // ambil method dari method di form
+            var method = $(this).attr('method')
+            // ke mana data akan dikirim
+            // diambil dari action di form
+            var action = $(this).attr('action')
+            // memulai kirim ajax
+            $.ajax({
+            url: urlku,
+            data: data,
+            method: method,
+            beforeSend: function() {
+                // lakukan sesuatu sebelum data dikirim
+                // misalkan memulai loading
+            },
+            success: function(data) {
+                console.log(data);
+                if(data.status=="error"){
+                    alert("login gagal, coba lagi masukan user dan password nya");
+                }else if(data.status=="sukses"){
+                    location.replace(document.URL+"users.php?status="+data.status+"&token="+data.token+"&site_url="+document.URL);
+                }
             }
-
-            document.getElementById("body").innerHTML = text;
-            text= '';
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-    }
-    
+            })
+        })
 </script>
-<script>
-    $(document).ready(function(){
-  // jika terjadi event submit pada form
-  tabel();
-  
-  var token = "21232f297a57a5a743894a0e4a801fc3";
-    var xmlhttp = new XMLHttpRequest();
-    var urlku = "http://localhost:8000/users?token=" + token;
-
-  $('#user').submit(function(e) {
-
-    // mencegah agar halaman tidak pindah halaman / refresh
-    e.preventDefault()
-    // ambil data
-    var data = $(this).serialize()
-    // ambil method dari method di form
-    var method = $(this).attr('method')
-    // ke mana data akan dikirim
-    // diambil dari action di form
-    var action = $(this).attr('action')
-    // memulai kirim ajax
-    $.ajax({
-      url: urlku,
-      data: data,
-      method: method,
-      beforeSend: function() {
-        // lakukan sesuatu sebelum data dikirim
-        // misalkan memulai loading
-      },
-      success: function(data) {
-        tabel();
-      }
-    })
-  })
-})
-</script>
-
 </html>
