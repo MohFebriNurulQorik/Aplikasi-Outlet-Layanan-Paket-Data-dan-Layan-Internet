@@ -55,7 +55,7 @@ class UserController extends Controller
             ->get();
 
             if($result->isEmpty()){
-                return response()->json(['status' => 'token salah', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }else{
                if($result[0]->roles_id!=1||$result[0]->roles_id!='1'){
                 $data=User::find($result[0]->id);
@@ -68,7 +68,7 @@ class UserController extends Controller
             }
             
         }else{
-            return response()->json(['status' => 'error', 'token' => $token]);
+            return response()->json(['status' => 'logout', 'token' => $token]);
         }
     }
     public function deatail_user($id){
@@ -80,7 +80,7 @@ class UserController extends Controller
             ->get();
 
             if($result->isEmpty()){
-                return response()->json(['status' => 'token salah', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }else{
                if($result[0]->roles_id!=1||$result[0]->roles_id!='1'){
                 $data=User::find($result[0]->id);
@@ -92,7 +92,7 @@ class UserController extends Controller
             }
             
         }else{
-            return response()->json(['status' => 'erorr', 'token' => $token]);
+            return response()->json(['status' => 'logout', 'token' => $token]);
         }
         return $data;
     }
@@ -108,7 +108,7 @@ class UserController extends Controller
             ->select("*")
             ->get();
             if($result->isEmpty()){
-                return response()->json(['status' => 'token salah', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }elseif(!isset($result2)){
                 return response()->json(['status' => 'email terpakai', 'token' => $token]);
             }elseif($result[0]->roles_id==1||$result[0]->roles_id=='1'){
@@ -155,7 +155,7 @@ class UserController extends Controller
             ->select("*")
             ->get();
             if($result->isEmpty()){
-                return response()->json(['status' => 'token salah', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }elseif($result[0]->roles_id==1||$result[0]->roles_id=='1'){
                 $this->validate($request, [
                     'name' => 'required|string|max:255',

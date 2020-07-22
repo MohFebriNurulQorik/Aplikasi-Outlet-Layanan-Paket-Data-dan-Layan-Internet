@@ -114,17 +114,78 @@
 
 </body>
 <script>
-       var token = "21232f297a57a5a743894a0e4a801fc3";
-    var xmlhttp = new XMLHttpRequest();
-    var url = "http://localhost:8000/users?token=" + token;
+        $(document).ready(function(){
+    
     var text = '';
+    var token;
+    var status;
+    var site_url;
+       function $_GET(param) {
+            var vars = {};
+            window.location.href.replace( location.hash, '' ).replace( 
+                /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+                function( m, key, value ) { // callback
+                    vars[key] = value !== undefined ? value : '';
+                }
+            );
+
+            if ( param ) {
+                return vars[param] ? vars[param] : null;	
+            }
+            return vars;
+        }
+        var token = $_GET('token'),
+                site_url = $_GET('site_url'),status=$_GET('status');
+
+    function cek_login() {
+        function $_GET(param) {
+            var vars = {};
+            window.location.href.replace( location.hash, '' ).replace( 
+                /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+                function( m, key, value ) { // callback
+                    vars[key] = value !== undefined ? value : '';
+                }
+            );
+
+            if ( param ) {
+                return vars[param] ? vars[param] : null;	
+            }
+            return vars;
+        }
+        var token = $_GET('token'),
+                site_url = $_GET('site_url'),status=$_GET('status');
+         
+    
+    }
+
+
+  
+    
+
+  // jika terjadi event submit pada form
+  
+
+
+
+   
     function tabel() {
-     
+        var xmlhttp = new XMLHttpRequest();
+        var url = "http://localhost:8000/users?token=" + token;
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
+         
             var myArr = JSON.parse(this.responseText);
+            cek_login();
+            console.log(site_url);
+            console.log(myArr["status"]);
+            console.log(myArr["status"]=="logout");
+            console.log(token);
+            if(myArr["status"]=="logout"){
+                location.replace(site_url);
+            }
             document.getElementById("body").innerHTML = "";
-            console.log(myArr['data_user']);
+            
+           
             $("#body").empty();
             for (i = 0; i < myArr['data_user'].length; i++) {
                 text += '<tr>' +
@@ -142,14 +203,11 @@
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     }
-    
-</script>
-<script>
-    $(document).ready(function(){
-  // jika terjadi event submit pada form
+
+    cek_login();
   tabel();
   
-  var token = "21232f297a57a5a743894a0e4a801fc3";
+//   var token = "21232f297a57a5a743894a0e4a801fc3";
     var xmlhttp = new XMLHttpRequest();
     var urlku = "http://localhost:8000/users?token=" + token;
 
@@ -178,6 +236,11 @@
       }
     })
   })
+
+
+
+   
+
 })
 </script>
 
