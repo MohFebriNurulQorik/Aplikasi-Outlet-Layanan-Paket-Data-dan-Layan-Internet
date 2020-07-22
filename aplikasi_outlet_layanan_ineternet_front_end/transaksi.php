@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html5>
 
 <head>
     <meta charset="utf-8">
@@ -15,6 +15,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+  
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+  
 </head>
 
 <body>
@@ -39,11 +43,11 @@
             </ul>
         </div>
     </nav>
-    <div class="container" style="padding-top:15px">
+    <div class="#" style="padding:15px" data-page-length='25' >
         <div class="row">
            
             <div class="col-md-12">
-                <table class="table">
+                <table class="table" id="table" data-page-length='5'>
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">No</th>
@@ -325,9 +329,8 @@
         tabel();
       }
     })
+    
   })
-
-
 
    
 
