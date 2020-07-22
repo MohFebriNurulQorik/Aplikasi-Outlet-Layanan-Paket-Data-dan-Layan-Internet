@@ -173,7 +173,7 @@
    
     function tabel() {
         var xmlhttp = new XMLHttpRequest();
-        var url = "http://localhost:8000/users?token=" + token;
+        var url = "http://localhost:8000/layanan?token=" + token;
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
          

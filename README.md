@@ -32,6 +32,12 @@ Penting
    contoh : C:\xampp\htdocs\D_NET\aplikasi_outlet_layanan_ineternet_back_end_lumen>php -S localhost:8000 -t public
 6. back end redy
 
+7. front end 
+   aplikasi_outlet_layanan_ineternet_back_font_end donwload
+8. masukan ke file xampp/htdocs/
+9. jalankan index.php
+   
+
 Akases admin
 email:admin@gmail.com
 password : admin123

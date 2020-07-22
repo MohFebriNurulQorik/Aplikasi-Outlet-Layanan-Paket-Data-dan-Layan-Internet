@@ -30,7 +30,7 @@ class LayananController extends Controller
                 ->get();
     
                 if($result->isEmpty()){
-                    return response()->json(['status' => 'token salah', 'token' => $token]);
+                    return response()->json(['status' => 'logout', 'token' => $token]);
                 }else{
                    if($result[0]->roles_id==1||$result[0]->roles_id=='1'){
                     $data=Layanan::all();
@@ -39,7 +39,7 @@ class LayananController extends Controller
                 }
                 
             }else{
-                return response()->json(['status' => 'error', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }
         }
         public function deatail_layanan($id){
@@ -51,7 +51,7 @@ class LayananController extends Controller
                 ->get();
     
                 if($result->isEmpty()){
-                    return response()->json(['status' => 'token salah', 'token' => $token]);
+                    return response()->json(['status' => 'logout', 'token' => $token]);
                 }else{
                     $data=Layanan::find($id);
                     return response()->json(['data'=>$data,'status' => 'sukses', 'token' => $token]);
@@ -59,7 +59,7 @@ class LayananController extends Controller
                 }
                 
             }else{
-                return response()->json(['status' => 'erorr', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }
         }
         public function create_layanan(Request $request){
@@ -70,7 +70,7 @@ class LayananController extends Controller
                 ->select("*")
                 ->get();
                 if($result->isEmpty()){
-                    return response()->json(['status' => 'token salah', 'token' => $token]);
+                    return response()->json(['status' => 'logout', 'token' => $token]);
                 }elseif($result[0]->roles_id==1||$result[0]->roles_id=='1'){
                     $this->validate($request, [
                         'Nama_layanan' => 'required|string|max:255',
@@ -92,7 +92,7 @@ class LayananController extends Controller
     
                     return response()->json(['status' => 'sukses', 'token' => $token]);
                 }else{
-                    return response()->json(['status' => 'eror, hanya Admin yang dapat create user baru', 'token' => $token]);
+                    return response()->json(['status' => 'logout', 'token' => $token]);
                 }
                 
             }else{
@@ -107,7 +107,7 @@ class LayananController extends Controller
                 ->select("*")
                 ->get();
                 if($result->isEmpty()){
-                    return response()->json(['status' => 'token salah', 'token' => $token]);
+                    return response()->json(['status' => 'logout', 'token' => $token]);
                 }elseif($result[0]->roles_id==1||$result[0]->roles_id=='1'){
                     $this->validate($request, [
                         'Nama_layanan' => 'required|string|max:255',
@@ -131,11 +131,11 @@ class LayananController extends Controller
     
                     return response()->json(['status' => 'sukses', 'token' => $token]);
                 }else{
-                    return response()->json(['status' => 'eror, hanya Admin yang dapat update user baru', 'token' => $token]);
+                    return response()->json(['status' => 'logout', 'token' => $token]);
                 }
                 
             }else{
-                return response()->json(['status' => 'eror', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }
         }
 }

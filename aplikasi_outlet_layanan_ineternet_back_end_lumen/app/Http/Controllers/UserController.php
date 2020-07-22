@@ -139,7 +139,7 @@ class UserController extends Controller
 
                 return response()->json(['status' => 'sukses', 'token' => $token]);
             }else{
-                return response()->json(['status' => 'eror, hanya Admin yang dapat create user baru', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }
             
         }else{
@@ -186,11 +186,11 @@ class UserController extends Controller
 
                 return response()->json(['status' => 'sukses', 'token' => $token]);
             }else{
-                return response()->json(['status' => 'eror, hanya Admin yang dapat update user baru', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }
             
         }else{
-            return response()->json(['status' => 'eror', 'token' => $token]);
+            return response()->json(['status' => 'logout', 'token' => $token]);
         }
     }
 }
