@@ -41,44 +41,88 @@
     </nav>
     <div class="container" style="padding-top:15px">
         <div class="row">
-            <div class="col-md-4">
+           
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama Layanen</th>
+                            <th scope="col">Nama Pelanggan</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Priode Beralanggan</th>
+                            <th scope="col">Priode Akhir Berlangganan</th>
+                            <th scope="col">Nominal Dibayarkan</th>
+                            <th scope="col">Status Pembayaran</th>
+                            <th scope="col">Tanggal Pembayaran</th>
+                            <th scope="col">Type Pembayaran</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id='body'>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-12">
+
+                <br>
+                <br>
+                <h3>Transakasi Baru</h3>
                 <form action="#" id="user" method="PUT">
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault01">Name</label>
-                            <input type="text" class="form-control" id="validationDefault01" name="name"
-                                placeholder="Akbar" required>
+
+                            <label for="validationDefault01">Nama Layanan</label>
+                            <select class="custom-select" id="layanan_list" name="Id_layanan" id="validationDefault04" required>
+                            
+                           </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault02">Phone</label>
-                            <input type="text" class="form-control" id="validationDefault02" name="phone"
-                                placeholder="081212123" required>
+                            <label for="validationDefault02">Nama User</label>
+                            <select class="custom-select" id="user_list" name="Id_users" id="validationDefault04" required>
+                              
+                            </select>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault03">Email</label>
-                            <input type="text" class="form-control" id="validationDefault03" name="email"
-                                placeholder="ShonAlay@gmail.com" required>
+                            <label for="validationDefault03">Priode Start</label>
+                            <input type="date" class="form-control" id="validationDefault03" name="Priode_start"
+                                 required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault04">Password</label>
-                            <input type="text" class="form-control" id="validationDefault03" name="password_baru"
-                                placeholder="*******" required>
+                            <label for="validationDefault04">Priode End</label>
+                            <input type="date" class="form-control" id="validationDefault03" name="Priode_end"
+                            required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault03">Adress</label>
-                            <input type="text" class="form-control" id="validationDefault03" name="adress"
+                            <label for="validationDefault03">Nominal Pembayaran</label>
+                            <input type="number" class="form-control" id="validationDefault03" name="Nominal_dibayarkan"
+                                 required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault04">Status Pembayaran</label>
+                            <select class="custom-select" name="Status_pembayaran" id="validationDefault04" required>
+                                <option value="1">Telah Membayar</option>
+                                <option value="2">Belum Membayar</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault03">Tanggal Pembayaran</label>
+                            <input type="date" class="form-control" id="validationDefault03" name="Tgl_bayar"
                                 placeholder="Jember" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault04">Roles</label>
-                            <select class="custom-select" name="roles_id" id="validationDefault04" required>
-                                <option value="1">Admin</option>
-                                <option value="2">User</option>
+                            <label for="validationDefault04">Status Penagihan</label>
+                            <select class="custom-select" name="Status_penagihan" id="validationDefault04" required>
+                                <option value="1">Telah Ditagihkan</option>
+                                <option value="2">Belum Belum Ditagihakan</option>
                             </select>
                         </div>
                     </div>
@@ -92,21 +136,6 @@
                     </div>
                     <button class="btn btn-primary" type="submit">Submit form</button>
                 </form>
-            </div>
-            <div class="col-md-8">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
-                        </tr>
-                    </thead>
-                    <tbody id='body'>
-
-                    </tbody>
-                </table>
             </div>
         </div>
 
@@ -173,29 +202,31 @@
    
     function tabel() {
         var xmlhttp = new XMLHttpRequest();
-        var url = "http://localhost:8000/users?token=" + token;
+        var url = "http://localhost:8000/transaksi?token=" + token;
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
          
             var myArr = JSON.parse(this.responseText);
             cek_login();
-            console.log(site_url);
-            console.log(myArr["status"]);
-            console.log(myArr["status"]=="logout");
-            console.log(token);
             if(myArr["status"]=="logout"){
                 location.replace(site_url);
             }
             document.getElementById("body").innerHTML = "";
-            
            
             $("#body").empty();
             for (i = 0; i < myArr['data_user'].length; i++) {
                 text += '<tr>' +
-                    '<td>' + myArr['data_user'][i].id + '</td>' +
+                    '<td>' + (i+1) + '</td>' +
+                    '<td>' + myArr['data_user'][i].Nama_layanan + '</td>' +
                     '<td>' + myArr['data_user'][i].name + '</td>' +
-                    '<td>' + myArr['data_user'][i].email + '</td>' +
                     '<td>' + myArr['data_user'][i].phone + '</td>' +
+                    '<td>' + myArr['data_user'][i].Priode_start + '</td>' +
+                    '<td>' + myArr['data_user'][i].Priode_end + '</td>' +
+                    '<td>' + myArr['data_user'][i].Nominal_dibayarkan + '</td>' +
+                    '<td>' + myArr['data_user'][i].Status_pembayaran + '</td>' +
+                    '<td>' + myArr['data_user'][i].Tgl_bayar + '</td>' +
+                    '<td>' + myArr['data_user'][i].Type + '</td>' +
+                    '<td>' + myArr['data_user'][i].status + '</td>' +
                     '</tr>';
             }
 
@@ -206,13 +237,66 @@
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     }
+    function user() {
+        var xmlhttp = new XMLHttpRequest();
+        var url = "http://localhost:8000/users?token=" + token;
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+         
+            var myArr = JSON.parse(this.responseText);
+            cek_login();
+            if(myArr["status"]=="logout"){
+                location.replace(site_url);
+            }
+            document.getElementById("user_list").innerHTML = "";
+           
+            $("#user_list").empty();
+            for (i = 0; i < myArr['data_user'].length; i++) {
+                text += '<option value="'+myArr['data_user'][i].id+'">' +myArr['data_user'][i].name
+                    '</option>';
+            }
 
+            document.getElementById("user_list").innerHTML = text;
+            text= '';
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+    }
+    function layanan() {
+        var xmlhttp = new XMLHttpRequest();
+        var url = "http://localhost:8000/layanan?token=" + token;
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+         
+            var myArr = JSON.parse(this.responseText);
+            cek_login();
+            if(myArr["status"]=="logout"){
+                location.replace(site_url);
+            }
+            document.getElementById("layanan_list").innerHTML = "";
+           
+            $("#layanan_list").empty();
+            for (i = 0; i < myArr['data_user'].length; i++) {
+                text += '<option value="'+myArr['data_user'][i].Id+'">' +myArr['data_user'][i].Nama_layanan
+                    '</option>';
+            }
+
+            document.getElementById("layanan_list").innerHTML = text;
+            text= '';
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+    }
     cek_login();
   tabel();
+  user();
+  layanan();
   
 //   var token = "21232f297a57a5a743894a0e4a801fc3";
     var xmlhttp = new XMLHttpRequest();
-    var urlku = "http://localhost:8000/users?token=" + token;
+    var urlku = "http://localhost:8000/transaksi?token=" + token;
 
   $('#user').submit(function(e) {
 
