@@ -252,8 +252,11 @@
            
             $("#user_list").empty();
             for (i = 0; i < myArr['data_user'].length; i++) {
-                text += '<option value="'+myArr['data_user'][i].id+'">' +myArr['data_user'][i].name
+                if(myArr['data_user'][i].roles_id!=1){
+                    text += '<option value="'+myArr['data_user'][i].id+'">' +myArr['data_user'][i].name
                     '</option>';
+                }
+                
             }
 
             document.getElementById("user_list").innerHTML = text;
