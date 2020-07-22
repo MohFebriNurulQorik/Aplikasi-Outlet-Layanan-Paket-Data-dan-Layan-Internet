@@ -43,42 +43,43 @@
         <div class="row">
             <div class="col-md-4">
                 <form action="#" id="user" method="PUT">
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault01">Name</label>
-                            <input type="text" class="form-control" id="validationDefault01" name="name"
-                                placeholder="Akbar" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault02">Phone</label>
-                            <input type="text" class="form-control" id="validationDefault02" name="phone"
-                                placeholder="081212123" required>
-                        </div>
-                    </div>
+                    
 
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault03">Email</label>
-                            <input type="text" class="form-control" id="validationDefault03" name="email"
-                                placeholder="ShonAlay@gmail.com" required>
+                            <label for="validationDefault03">Nama Layanan</label>
+                            <input type="text" class="form-control" id="validationDefault03" name="Nama_layanan"
+                                placeholder="Paket Data Hemat" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault04">Password</label>
-                            <input type="text" class="form-control" id="validationDefault03" name="password_baru"
-                                placeholder="*******" required>
+                            <label for="validationDefault04">Biaya berlangganan</label>
+                            <input type="number" class="form-control" id="validationDefault03" name="Biaya_berlangganan"
+                                 required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault03">Adress</label>
-                            <input type="text" class="form-control" id="validationDefault03" name="adress"
-                                placeholder="Jember" required>
+                            <label for="validationDefault01">Kapasitas jarigan</label>
+                            <input type="number" class="form-control" id="validationDefault01" name="Kapasitas_jaringan"
+                                 required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault04">Roles</label>
-                            <select class="custom-select" name="roles_id" id="validationDefault04" required>
-                                <option value="1">Admin</option>
-                                <option value="2">User</option>
+                            <label for="validationDefault02">Kecepatan transfer</label>
+                            <input type="text" class="form-control" id="validationDefault02" name="Kecepatan_transfer_data"
+                                placeholder="1" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault03">Bandwith</label>
+                            <input type="text" class="form-control" id="validationDefault03" name="Bandwith"
+                                placeholder="" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault04">Type</label>
+                            <select class="custom-select" name="Type" id="validationDefault04" required>
+                                <option value="1">Pra bayar</option>
+                                <option value="2">Pasca bayar</option>
                             </select>
                         </div>
                     </div>
@@ -98,9 +99,13 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
+                            <th scope="col">Nama Layanan</th>
+                            <th scope="col">Biaya Berlangganan</th>
+                            <th scope="col">Bandwith</th>
+                            <th scope="col">Kapasitas jaringan</th>
+                            <th scope="col">Kecepatan Transfer</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody id='body'>
@@ -183,6 +188,7 @@
             console.log(myArr["status"]);
             console.log(myArr["status"]=="logout");
             console.log(token);
+            console.log(myArr);
             if(myArr["status"]=="logout"){
                 location.replace(site_url);
             }
@@ -192,10 +198,14 @@
             $("#body").empty();
             for (i = 0; i < myArr['data_user'].length; i++) {
                 text += '<tr>' +
-                    '<td>' + myArr['data_user'][i].id + '</td>' +
-                    '<td>' + myArr['data_user'][i].name + '</td>' +
-                    '<td>' + myArr['data_user'][i].email + '</td>' +
-                    '<td>' + myArr['data_user'][i].phone + '</td>' +
+                    '<td>' + myArr['data_user'][i].Id + '</td>' +
+                    '<td>' + myArr['data_user'][i].Nama_layanan + '</td>' +
+                    '<td>' + myArr['data_user'][i].Biaya_berlangganan + '</td>' +
+                    '<td>' + myArr['data_user'][i].Bandwith + '</td>' +
+                    '<td>' + myArr['data_user'][i].Kapasitas_jaringan + '</td>' +
+                    '<td>' + myArr['data_user'][i].Kecepatan_transfer_data + '</td>' +
+                    '<td>' + myArr['data_user'][i].Type + '</td>' +
+                    '<td>' + myArr['data_user'][i].Status + '</td>' +
                     '</tr>';
             }
 
@@ -212,7 +222,7 @@
   
 //   var token = "21232f297a57a5a743894a0e4a801fc3";
     var xmlhttp = new XMLHttpRequest();
-    var urlku = "http://localhost:8000/users?token=" + token;
+    var urlku = "http://localhost:8000/layanan?token=" + token;
 
   $('#user').submit(function(e) {
 
