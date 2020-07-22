@@ -84,7 +84,13 @@
                 if(data.status=="error"){
                     alert("login gagal, coba lagi masukan user dan password nya");
                 }else if(data.status=="sukses"){
-                    location.replace(document.URL+"users.php?status="+data.status+"&token="+data.token+"&site_url="+document.URL);
+                    if(data.id==1){
+
+                        location.replace(document.URL+"users.php?status="+data.status+"&token="+data.token+"&site_url="+document.URL);
+                    }else if(data.id==2){
+                        location.replace(document.URL+"pelanggan.php?status="+data.status+"&token="+data.token+"&site_url="+document.URL+"&id_user="+data.id);
+
+                    }
                 }
             }
             })

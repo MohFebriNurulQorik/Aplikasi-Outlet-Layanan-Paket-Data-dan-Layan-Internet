@@ -38,10 +38,10 @@ class UserController extends Controller
                 $update_token = User::where('token', $token)          
                 ->get();
             } while (!$update_token->isEmpty());
-            $user = User::where('email', $request->email)
+            $user3 = User::where('email', $request->email)
             ->where('password', $request->password) 
             ->update(['token' => $token]); 
-            return response()->json(['status' => 'sukses', 'token' => $token]);
+            return response()->json(['status' => 'sukses', 'token' => $token,'id'=>$user->roles_id,'roles'=>$user->roles_id]);
         } 
         
     

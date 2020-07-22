@@ -31,7 +31,7 @@ class TransaksiController extends Controller
             ->get();
 
             if($result->isEmpty()){
-                return response()->json(['status' => 'token salah', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }else{
                if($result[0]->roles_id==1||$result[0]->roles_id=='1'){
                 $data = DB::table('transaksi')
@@ -44,7 +44,7 @@ class TransaksiController extends Controller
             }
             
         }else{
-            return response()->json(['status' => 'error', 'token' => $token]);
+            return response()->json(['status' => 'logout', 'token' => $token]);
         }
     }
     public function transaksi_user($id){
@@ -56,7 +56,7 @@ class TransaksiController extends Controller
             ->get();
 
             if($result->isEmpty()){
-                return response()->json(['status' => 'token salah', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }else{
                 $data = DB::table('transaksi')
                 ->join('layanan', 'layanan.Id', '=', 'transaksi.Id_layanan')
@@ -70,7 +70,7 @@ class TransaksiController extends Controller
             }
             
         }else{
-            return response()->json(['status' => 'erorr', 'token' => $token]);
+            return response()->json(['status' => 'logout', 'token' => $token]);
         }
     }
     public function deatail_transaksi($id){
@@ -82,7 +82,7 @@ class TransaksiController extends Controller
             ->get();
 
             if($result->isEmpty()){
-                return response()->json(['status' => 'token salah', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }else{
                 $data = DB::table('transaksi')
                 ->join('layanan', 'layanan.Id', '=', 'transaksi.Id_layanan')
@@ -95,7 +95,7 @@ class TransaksiController extends Controller
             }
             
         }else{
-            return response()->json(['status' => 'erorr', 'token' => $token]);
+            return response()->json(['status' => 'logout', 'token' => $token]);
         }
     }
     public function create_transaksi(Request $request){
@@ -106,7 +106,7 @@ class TransaksiController extends Controller
             ->select("*")
             ->get();
             if($result->isEmpty()){
-                return response()->json(['status' => 'token salah', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }elseif($result[0]->roles_id==1||$result[0]->roles_id=='1'){
                 $this->validate($request, [
                     'Id_users' => 'required|numeric|digits_between:1,11',
@@ -132,11 +132,11 @@ class TransaksiController extends Controller
 
                 return response()->json(['status' => 'sukses', 'token' => $token]);
             }else{
-                return response()->json(['status' => 'eror, hanya Admin yang dapat create user baru', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }
             
         }else{
-            return response()->json(['status' => 'eror', 'token' => $token]);
+            return response()->json(['status' => 'logout', 'token' => $token]);
         }
     }
     public function edit_transaksi(Request $request,$id){
@@ -147,7 +147,7 @@ class TransaksiController extends Controller
             ->select("*")
             ->get();
             if($result->isEmpty()){
-                return response()->json(['status' => 'token salah', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }elseif($result[0]->roles_id==1||$result[0]->roles_id=='1'){
                 $this->validate($request, [
                     'Id_users' => 'required|numeric|digits_between:1,11',
@@ -173,11 +173,11 @@ class TransaksiController extends Controller
 
                 return response()->json(['status' => 'sukses', 'token' => $token]);
             }else{
-                return response()->json(['status' => 'eror, hanya Admin yang dapat update user baru', 'token' => $token]);
+                return response()->json(['status' => 'logout', 'token' => $token]);
             }
             
         }else{
-            return response()->json(['status' => 'eror', 'token' => $token]);
+            return response()->json(['status' => 'logout', 'token' => $token]);
         }
     }
 
